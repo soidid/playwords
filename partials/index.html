@@ -1,0 +1,49 @@
+<div class="wrapper l_center">
+  <div class="tab" ng-click="view='word'" ng-class="{'tab--isActive':view==='word'}">發言</div>
+  <!-- <div class="tab" ng-click="view='cloud'" ng-class="{'tab--isActive':view==='cloud'}">文字雲</div> -->
+  <div class="tab" ng-click="view='wordfreq'" ng-class="{'tab--isActive':view==='wordfreq'}">字詞頻率</div>
+  <a href="http://timdream.org/wordcloud/" target="new"><div class="tab">文字雲</div></a>
+  
+</div>
+
+<div class="wrapper" ng-show="view==='wordfreq'">
+    <iframe src="http://timdream.org/wordfreq/" width="100%" height="800px"></iframe>
+</div>
+
+<div class="wrapper" ng-show="view==='word'">
+    <h3>{{meeting.title}}</h3>
+    <p>時間：{{meeting.date}}</p>
+    <p>地點：{{meeting.venue}}</p>
+    <p>主席：{{meeting.chairman}}</p>
+    <p>會議內容：{{meeting.topic}}</p>
+    
+    <hr/>
+
+    <select ng-model="query.speaker">
+        <option value="" selected>所有發言</option>
+        <option ng-repeat="v in stat" value="{{v.name}}">{{v.name}} ({{v.count}})</option>
+    </select>
+    
+    <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">複製發言文字</button>
+
+
+    <div ng-show="query.speaker" class="l_center">
+        <h3>{{query.speaker}}的發言雲</h3>
+        <img class="word-cloud-img" ng-src="images/{{query.speaker}}.png" err-src="images/nobody.png" >
+    </div>
+
+    
+    <div id="copy-text" class="copy">
+        <span ng-repeat="s in sayings | filter: query" >{{s.paragraph}}</span>
+    </div>
+
+    <div class="saying" ng-repeat="s in sayings | filter: query">
+        <div class="name">{{s.speaker}}</div>
+        <div class="paragraph">{{s.paragraph}}</div>   
+    </div>
+
+
+
+</div><!-- end of wrapper -->
+
+

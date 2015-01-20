@@ -1,0 +1,88 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
+body {
+  /* font-family: "Open Sans","Helvetica Neue", "Helvetica", "Arial", sans-serif; */
+  font-family: "Source Han Sans TC", "Noto Sans", "微軟正黑體", Helvetica, Arial, sans-serif;
+  background: rgb;
+  margin: 0px;
+  padding: 0px;
+  text-rendering: optimizeLegibility;
+  min-width: 320px;
+  color: rgb(55,53,54);
+  font-size: 16px;
+  box-sizing: border-box;
+ 
+}
+a {
+  text-decoration: none;
+  color: #009688;/* rgb(0,191,198); */
+}
+@media screen and (min-width: 1000px){
+  .wrapper{
+     width: 1000px;
+  }
+}
+@media (max-width: 400px){
+  .wrapper{
+     width: 100%;
+  }
+}
+.wrapper {
+  margin: 0 auto;
+  padding:8px;
+  box-sizing: border-box;
+  position: relative;
+  /* background: rgb(236,236,236); */
+  /* background: #efedeb; */
+}
+.l_center {
+  text-align: center;
+}
+.tab {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid rgb(53,55,54);
+  color: rgb(53,55,54);
+  padding: 5px 20px;
+  cursor: pointer;
+}
+.tab--isActive {
+  color: white;
+  background: rgb(53,55,54);
+}
+iframe {
+  border: 0;
+}
+.word-cloud-img {
+  width: 100%;
+}
+select, option {
+  font-size: 16px;
+  padding: 20px;
+  margin: 0;
+
+}
+button {
+  height: 24px;
+}
+#copy-text {
+  height: 0;
+  overflow: hidden;
+  background: gray;
+}
+.saying {
+  margin: 10px;
+}
+.name {
+  display: inline-block;
+  width: 150px;
+  float: left;
+
+}
+.paragraph {
+  
+  min-width: 80%;
+  overflow: hidden;
+  _overflow:visible;  zoom:1; 
+
+}
