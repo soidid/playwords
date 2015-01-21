@@ -19,7 +19,7 @@ a {
 }
 @media screen and (min-width: 1000px){
   .wrapper{
-     width: 1000px;
+     width: 900px;
   }
 }
 @media (max-width: 400px){
@@ -96,11 +96,12 @@ button {
  * Contribution Brick
  * ------------------------------------ */
 .Channel {
-  width: 150px;
-  //position: fixed;
-  position: absolute;
+  width: 160px;
+  position: fixed;
   top: 10px;
   left: 10px;
+  overflow: scroll;
+  height: 100vh;
 
 }
 .Channel-control {
@@ -108,8 +109,8 @@ button {
 
 }
 .ContributionBrickSection {
-  /*height: 40vh;
-  overflow: scroll;*/
+  height: 80vh;
+  overflow: scroll;
 }
 .ContributionBrickSection-label {
   width: 10px;
@@ -119,8 +120,8 @@ button {
 }
 .ContributionBrick {
   border: 1px solid rgb(240,240,240);
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   float: left;
   display: inline-block;
 }
