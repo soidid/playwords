@@ -1,0 +1,76 @@
+
+<div class="Channel">
+
+    <!-- /// Control 1///-->
+    <div class="Channel-control">
+      <select ng-model="query.speaker">
+        <option value="" selected>比較對象1</option>
+        <option ng-repeat="v in stat" value="{{v.name}}">{{v.name}} ({{v.count}})</option>
+      </select>
+    </div>
+
+    <div ng-show="query.speaker">
+    <div class="ContributionBrickSection-label ContributionBrick--highlight"></div>{{query.speaker}}
+    <ul>
+      <li>{{(sayings | filter: query).length}} 個發言</li>
+      <li>發言次：{{(sayings | filter: query).length / meeting.total * 100 | number:0}}%</li>
+      <li>發言量：{{wordcount[query.speaker] / meeting.totalWord * 100 | number:0}}%</li>
+    </div>
+    
+    <!-- /// Brick VIS ///-->
+    <div class="ContributionBrickSection">
+    <div class="ContributionBrick" ng-repeat="s in sayings" ng-class="{'ContributionBrick--highlight':s.speaker === query.speaker, 'ContributionBrick--highlight2':s.speaker === query2.speaker}" ng-click="goToSaying(s.index)"><!-- style="background:{{colorSet[s.speaker]}};">-->
+    </div> 
+    </div>
+    
+    <!-- /// Control 2///-->
+
+    <div class="Channel-control">
+      <select ng-model="query2.speaker">
+        <option value="" selected>比較對象2</option>
+        <option ng-repeat="v in stat" value="{{v.name}}">{{v.name}} ({{v.count}})</option>
+      </select>
+    </div>
+
+    <div ng-show="query2.speaker">
+    <div class="ContributionBrickSection-label ContributionBrick--highlight2"></div>{{query2.speaker}}
+    <ul>
+      <li>{{(sayings | filter: query2).length}} 個發言</li>
+      <li>發言次：{{(sayings | filter: query2).length / meeting.total * 100 | number:0}}%</li>
+      <li>發言量：{{wordcount[query2.speaker] / meeting.totalWord * 100 | number:0}}%</li>
+    </div>
+
+
+</div>  
+
+<div class="wrapper">
+   
+
+    <h3>{{meeting.title}}</h3>
+    <p>時間：{{meeting.date}}</p>
+    <p>地點：{{meeting.venue}}</p>
+    <p>主席：{{meeting.chairman}}</p>
+    <p>會議內容：{{meeting.topic}}</p>
+    <p>發言統計：{{meeting.total}} 次發言，{{meeting.totalWord | number}} 字</p>
+    
+    <div class="ProportionBox">
+    <div class="ProportionBox-proportionBrick" ng-repeat="v in wordcountArray" style="width:{{v.percentage}}%; background:{{v.color}}">
+        <div class="ProportionBox-proportionBrick-focusName">{{v.name}}, {{v.percentage}}% 發言量</div>
+        <div class="ProportionBox-proportionBrick-name">{{v.name}}</div>
+       
+    </div>
+    </div>
+
+    <hr/>
+   
+    
+    <div class="saying" ng-repeat="s in sayings" ng-class="{'saying--isHighlight':s.speaker===query.speaker, 'saying--isHighlight2':s.speaker===query2.speaker}" id="saying-{{s.index}}">
+        <div class="name">{{s.speaker}}</div>
+        <div class="paragraph">{{s.paragraph}}</div>   
+    </div>
+
+
+
+</div><!-- end of wrapper -->
+
+

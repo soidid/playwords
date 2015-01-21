@@ -37,8 +37,18 @@ app.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
       when('/index',{
-      templateUrl: 'partials/index.html',
-      controller: 'indextrl'
+      templateUrl: 'partials/index.html'
+    }).
+      when('/wordcloud',{
+      templateUrl: 'partials/wordcloud.html',
+      controller: 'wordcloudCtrl'
+    }).
+      when('/contribution',{
+      templateUrl: 'partials/contributionNav.html'
+    }).
+      when('/contribution/:billName',{
+      templateUrl: 'partials/contribution.html',
+      controller: 'contributionCtrl'
     }).
       otherwise({
       redirectTo:'/',
@@ -69,8 +79,7 @@ app.factory('DataService', function ($http, $q){
   return DataService;
 })
 
-
-app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
+app.controller('wordcloudCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
   
   
   var client = new ZeroClipboard( $("#copy-button") );
@@ -121,9 +130,104 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       
   });
   
+}]);
 
+app.controller('contributionCtrl', ['$scope', 'DataService', '$location', '$routeParams', '$sce', function ($scope, DataService, $location, $routeParams, $sce){
+  var billName = 'Nationality';//default
+  if($routeParams.billName === 'FoodSafety'){
+     billName = $routeParams.billName;
+  }
 
+  DataService.getData(billName).then(function(data){
+      $scope.meeting = data;
+      $scope.sayings = [];
+      $scope.stat = [];//{name: 段宜康, count: 20}
 
+      var temp = {};
+      $scope.wordcount = {};
+      var count = 0;
+
+      $scope.colorSet = {};//{key: 段宜康, color: #}
+      
+      $scope.meeting.totalWord = 0;//發言字數統計
+
+      for(var key in data.sayings){
+          //console.log(data.sayings[key]);
+          data.sayings[key].index = count;
+
+          $scope.sayings.push(data.sayings[key]);
+
+          if(!temp[data.sayings[key].speaker])
+              temp[data.sayings[key].speaker] = 0;
+          temp[data.sayings[key].speaker]++;
+
+          if(!$scope.wordcount[data.sayings[key].speaker])
+              $scope.wordcount[data.sayings[key].speaker] = 0;
+        
+          // console.log(data.sayings[key].paragraph);
+          // console.log(data.sayings[key].paragraph.length);
+          // console.log('-----');
+
+          $scope.meeting.totalWord += data.sayings[key].paragraph.length;
+          $scope.wordcount[data.sayings[key].speaker] += data.sayings[key].paragraph.length;
+
+          count++;
+
+      }
+      $scope.meeting.total = count;//發言次數
+
+      //change word count to array
+      $scope.wordcountArray = [];
+     
+      for(var key in $scope.wordcount){
+          var percentage = Math.floor($scope.wordcount[key] / $scope.meeting.totalWord * 100,0);
+          //var percentage = Math.round($scope.wordcount[key] / $scope.meeting.totalWord * 100,0);
+          
+          $scope.wordcountArray.push({'name':key,'count':$scope.wordcount[key], 'percentage':percentage}); 
+          count++;
+      }
+      $scope.wordcountArray.sort(function (a,b) {
+          return b.count - a.count;
+      });
+      
+      count = 0;
+      for(var key in $scope.wordcountArray){
+          var color = $scope.getColor(count);
+          $scope.wordcountArray[key].color = color;
+          count++;
+      }
+
+////////////////
+
+      var count = 0;
+      for(var key in temp){
+          $scope.stat.push({'name':key,'count':temp[key],'word_count':$scope.wordcount[key]});
+          $scope.colorSet[key] = $scope.getColor(count);
+          count++;   
+      }
+      console.log($scope.colorSet);
+
+      $scope.stat.sort(function (a,b) {
+          return b.count - a.count;
+      });
+
+  });
+
+  $scope.getColor = function(index){
+    $scope.colors = ['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd'];
+    return $scope.colors[index%7];
+  };
+
+  $scope.goToSaying = function (index) {
+    console.log("Go to saying:"+index);
+    var element = $( "#saying-"+index );
+    var offset = element.offset();
+    $('body').animate({scrollTop:offset.top}, 0);
+
+  };
+
+  
+  
 }]);
 
 

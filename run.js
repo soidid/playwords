@@ -77,15 +77,20 @@ function parse(){
 
           }
       }
-      if(dis_index !== -1){
+      if(dis_index !== -1 && dis_end_index !== -1){
           discussion_part = data.substring(dis_index, dis_end_index);
           console.log("section starting from:"+dis_index);
           console.log("section end at:"+dis_end_index);
           //console.log(discussion_part);
 
       }else{
-          console.log("error: can't find section.");
-          return;
+          if(dis_index === -1){
+            console.log("error: can't find discusstion start section.");
+            return;
+          }
+          
+          discussion_part = data.substr(dis_index);
+          //console.log(discussion_part);
 
       }
 

@@ -60,6 +60,7 @@ select, option {
   font-size: 16px;
   padding: 20px;
   margin: 0;
+  max-width: 120px;
 
 }
 button {
@@ -73,16 +74,107 @@ button {
 .saying {
   margin: 10px;
 }
+.saying--isHighlight {
+  background: #80D8FF;
+}
+.saying--isHighlight2 {
+  background: #AED581;
+}
 .name {
   display: inline-block;
   width: 150px;
   float: left;
-
 }
 .paragraph {
-  
   min-width: 80%;
   overflow: hidden;
   _overflow:visible;  zoom:1; 
 
 }
+
+/* ------------------------------------
+ * Contribution Brick
+ * ------------------------------------ */
+.Channel {
+  width: 150px;
+  //position: fixed;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+}
+.Channel-control {
+  margin: 10px;
+
+}
+.ContributionBrickSection {
+  /*height: 40vh;
+  overflow: scroll;*/
+}
+.ContributionBrickSection-label {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 5px;
+}
+.ContributionBrick {
+  border: 1px solid rgb(240,240,240);
+  width: 8px;
+  height: 8px;
+  float: left;
+  display: inline-block;
+}
+.ContributionBrick--highlight {
+  background: #0091EA;
+}
+.ContributionBrick--highlight2 {
+  background: #8BC34A;
+}
+
+.ProportionBox {
+  height: 70px;
+  padding-top: 30px;
+  width: 100%;
+}
+.ProportionBox-proportionBrick{
+  height: 40px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  vertical-align: top;
+}
+.ProportionBox-proportionBrick-name {
+  width: 100%;
+  padding: 10px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.ProportionBox-proportionBrick-focusName {
+  display: none;
+}
+.ProportionBox-proportionBrick:hover .ProportionBox-proportionBrick-focusName{
+  display: inline-block;
+  position: absolute;
+  top: -22px;
+  left: 2px;
+  width: 300px;
+}
+.ProportionBox-proportionBrick:hover .ProportionBox-proportionBrick-name{
+  display: none;
+}
+.ProportionBox-proportionBrick:hover {
+  height: 60px;
+
+}
+
+
+
+
+
+
+
+
+
+
