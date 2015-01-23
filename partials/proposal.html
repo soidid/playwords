@@ -30,17 +30,30 @@
 
     <!-- //////////////////////// -->
     <div ng-show="isView('discuss')">
+
         <div class="meta_section">
-            <div>發言分佈</div>
+            <div class="meta_section-title">發言順序</div>
         
             <div class="round_block">
               <div class="round {{i.speaker_party}}" ng-repeat="i in r.discuss"></div>
             </div>
         </div>
         
-         
+        
         <div class="meta_section">
-            主要討論者
+            <div class="meta_section-title">發言量統計</div>
+            <!-- <div class="meta_ppl" ng-repeat="r in r.countArray">
+                {{r.name}}:{{r.percentage}}%
+                {{r}}
+            </div> -->
+
+            <div class="ProportionBox--proposal_page">
+            <div class="ProportionBox-proportionBrick {{v.party}} ProportionBox-proportionBrick--border" ng-repeat="v in r.countArray" style="width:{{v.percentage}}%;">
+                <div class="ProportionBox-proportionBrick-focusName--proposal_page">{{v.name}}, {{v.percentage}}% 發言量</div>
+                <div class="ProportionBox-proportionBrick-name">{{v.name}} {{v.percentage}}%</div>
+            </div>
+            </div>
+           
             
         </div>
 
@@ -48,8 +61,15 @@
         
         <div class="saying--timeline" ng-repeat="s in r.discuss">
           <div class="saying-party {{s.speaker_party}}"></div>
-          <div class="name">{{s.speaker}}</div>
-          <div class="paragraph">{{s.paragraph}}</div>   
+          <div class="name">{{s.speaker}}
+              <img class="name-img" ng-src="images/avatar/{{s.speaker}}.png" err-src="images/candidate-not-found.jpg">
+              <div class="name-meta">{{s.chairman}}{{s.position}}</div>
+          </div>
+          <div class="paragraph">{{s.paragraph}}</div>  
+          <div class="saying--comment">
+              <i class="fa fa-comment-o"></i>
+              <i class="fa fa-facebook"></i>
+          </div> 
         </div>
     </div>
     <!-- //////////////////////// -->

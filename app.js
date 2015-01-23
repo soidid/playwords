@@ -335,9 +335,75 @@ app.controller('proposalsCtrl', ['$scope', 'DataService', '$location', '$routePa
 
 }]);
 app.controller('proposalCtrl', ['$scope', 'DataService', '$location', '$routeParams', '$sce', function ($scope, DataService, $location, $routeParams, $sce){
-  
+  $scope.getColor = function(index){
+    $scope.colors = ['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd'];
+    return $scope.colors[index%7];
+  };
   DataService.getData('Proposals').then(function(data){
+      
+      //handle name & position data
+      for(var key in data.content){
+          var count = {};//count saying
+          var party = {};
+          var count_total = 0;
+         
+
+          for(var index in data.content[key].discuss){
+              var name = data.content[key].discuss[index].speaker;
+              
+
+              if(name.indexOf("主席")!==-1){
+                data.content[key].discuss[index].chairman = "主席";
+
+              }else{
+                if(name.indexOf("委員")!==-1)
+                  data.content[key].discuss[index].position = "立法委員";
+
+              }
+              name = name.replace("主席","");
+              name = name.replace("（","");
+              name = name.replace("）","");
+              name = name.replace("委員","");
+              if(name.length > 3){
+                 var position = name.substring(1,name.length-2);
+                 name = name.substring(0,1)+name.substring(name.length-2,name.length);
+                 data.content[key].discuss[index].position = position
+              }
+
+              if(!count[name]){//assuming name is unique
+                 count[name] = 0;     
+              }
+              count[name] += data.content[key].discuss[index].paragraph.length;
+              count_total += data.content[key].discuss[index].paragraph.length;
+              
+              party[name] = data.content[key].discuss[index].speaker_party;
+
+              data.content[key].discuss[index].speaker = name;
+              
+          }
+          var count_array = [];
+          for(var kk in count){
+            count_array.push({"name":kk,"count":count[kk],"percentage":Math.floor(count[kk]/count_total*100), "party":party[kk]});
+          }
+          count_array.sort(function (a,b) {
+            return b.count - a.count;
+          })
+          var count_index = 0;
+          count_array.map(function (item) {
+            item.color = $scope.getColor(count_index);
+            count_index++;
+          });
+
+
+          data.content[key].countTotal = count_total;
+          data.content[key].countObj = count;
+          data.content[key].countArray = count_array;
+
+
+      }
+      //
       $scope.proposals = data;
+
   });
   $scope.currentLine = '第二條之一';
 
