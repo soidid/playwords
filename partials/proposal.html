@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="wrapper row_inner">
+        <div class="row_item" ng-class="{'active':isFocus(r.line)}" ng-repeat="r in proposals.content | limitTo:10" ng-click="setFocus(r.line)">{{r.line}}</div>
+    </div>  
+</div>
+<div class="left_info">
+  <div ng-repeat="r in proposals.content" ng-show="isFocus(r.line)">
+      <div class="left_info_title">初審結果</div>
+      <div>{{r.result.decision}}</div>
+  <!-- <br/>
+      <div class="left_info_title">政院提案</div>
+      <div ng-show="r.ey_proposal.length > 0">有提案</div>
+      <div ng-hide="r.ey_proposal.length > 0">無提案</div> -->
+      
+  <br/>
+      <div class="left_info_title">委員提案</div>
+      <div class="round {{i.party}}" ng-repeat="i in r.ly_proposal"></div>
+      <div class="left_info_button" ng-click="setView('proposal')" ng-show="isView('discuss')">版本比較</div>
+      <div class="left_info_button" ng-click="setView('discuss')" ng-show="isView('proposal')">回到討論</div>
+  </div>
+</div>
+
+
+
+<div class="wrapper">
+    <div class="page">
+
+    <div ng-repeat="r in proposals.content" ng-show="isFocus(r.line)">
+
+
+    <!-- //////////////////////// -->
+    <div ng-show="isView('discuss')">
+        <div class="meta_section">
+            <div>發言分佈</div>
+        
+            <div class="round_block">
+              <div class="round {{i.speaker_party}}" ng-repeat="i in r.discuss"></div>
+            </div>
+        </div>
+        
+         
+        <div class="meta_section">
+            主要討論者
+            
+        </div>
+
+        <div class="divider"></div>
+        
+        <div class="saying--timeline" ng-repeat="s in r.discuss">
+          <div class="saying-party {{s.speaker_party}}"></div>
+          <div class="name">{{s.speaker}}</div>
+          <div class="paragraph">{{s.paragraph}}</div>   
+        </div>
+    </div>
+    <!-- //////////////////////// -->
+    <div class="proposal-section" ng-show="isView('proposal')">
+         <div class="proposal" ng-repeat="i in r.ly_proposal">
+              <div class="proposal-version {{i.party}}-border">{{i.version}}</div>
+              <div class="proposal-para">{{i.para}}</div>
+         </div>
+         <div class="proposal">
+              <div class="proposal-version default-border">初審結果</div>
+              <div class="proposal-para">{{r.result.para}}</div>
+         </div>
+
+
+    </div>
+
+    <!-- //////////////////////// -->
+
+    </div><!-- end of ng-repeat -->
+    </div><!-- end of page -->
+</div><!-- end of wrapper -->
+
+
+
+
+

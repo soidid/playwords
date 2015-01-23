@@ -71,14 +71,22 @@ button {
   overflow: hidden;
   background: gray;
 }
+
 .saying {
   margin: 10px;
 }
+
 .saying--isHighlight {
   background: #80D8FF;
 }
 .saying--isHighlight2 {
   background: #AED581;
+}
+.index {
+  display: inline-block;
+  width: 50px;
+  float: left;
+
 }
 .name {
   display: inline-block;
@@ -169,8 +177,204 @@ button {
   height: 60px;
 
 }
+/* -------------------------
 
+   ------------------------- */
+.row {
+  
+  width: 100%;
+  border-bottom: 6px solid rgb(230,230,230);
+  background: rgba(255,255,255,0.9);
+  z-index: 100;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 
+  
+
+}
+.row_inner {
+  height: 40px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+.row_item {
+  display: inline-block;
+  padding: 0px 8px;
+  border-right: 1px solid rgb(230,231,226);
+  width: auto;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  color: rgb(194,196,184);
+
+}
+.row_item.active {
+  color: rgb(136,0,19);
+
+}
+.row_item:hover {
+  background: rgb(230,231,226);
+}
+.page {
+  margin-top: 40px;
+}
+.section {
+  position: relative;
+  width: 100%;
+  display: block;
+  vertical-align: top;
+  min-height: 40px;
+  border-bottom: 1px solid rgb(220,220,220);
+  padding: 4px 0px;
+  
+}
+.part {
+  margin: 1px;
+  vertical-align: top;
+  overflow: scroll;
+  position: relative;
+  box-sizing: border-box;
+}
+.part.limit {
+  width: 120px;
+  float: left;
+}
+.part.medium{
+  width: 250px;
+  float: left;
+}
+.part.wide {
+  
+  overflow:hidden;  _overflow:visible;  zoom:1;
+
+}
+.sub_part {
+  display: inline-block;
+
+}
+.round_block {
+  
+}
+.round {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  float: left;
+  margin: 1px;
+}
+.KMT{
+  background: #3288bd;
+  
+}
+.DPP{
+  background: #7fbc41;
+  
+}
+.PFP{
+  background: orange;
+  
+}
+.TSU{
+  background: #b35806;
+  
+}
+.GOV {
+  background: rgb(220,220,220);
+ 
+}
+
+.KMT-border{
+  border-color: #3288bd;
+}
+.DPP-border{
+  border-color: #7fbc41;
+}
+.PFP-border{
+  border-color: orange;
+}
+.TSU-border{
+  border-color: #b35806;
+}
+.GOV-border {
+  border-color: rgb(220,220,220);
+}
+.saying--timeline {
+  border-left: 1px solid rgb(220,220,220);
+  padding-left: 10px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.saying-party {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: -5px;
+  top: 6px;
+}
+.left_info {
+  position: fixed;
+  left: 10px;
+  top: 50px;
+  width: 120px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  padding: 10px;
+  background: white;
+  z-index: 100;
+
+}
+.left_info_title {
+  border-bottom: 2px solid rgb(230,231,226);
+  font-weight: 700;
+  font-size: 18px;
+  padding: 4px 0px;
+  margin-bottom: 4px;
+}
+.left_info_button {
+  width: 100%;
+  padding: 8px 0px;
+  margin-top: 24px;
+  cursor: pointer;
+  overflow:hidden;  _overflow:visible;  zoom:1;
+  text-align: center;
+  background: rgb(230,231,226);
+}
+.proposal-section {
+  width: 1500px;
+  overflow: scroll;
+}
+.proposal {
+  width: 200px;
+  margin: 5px 5px 5px 0px;
+  border-left: 1px solid rgb(230,231,226);
+  padding: 4px;
+  display: inline-block;
+  vertical-align: top;
+
+}
+.proposal-version {
+  border-width: 0px;
+  border-bottom-width: 4px;
+  border-style: solid;
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+}
+.default-border {
+  border-color:rgb(230,231,226);
+}
+.meta_section {
+  overflow:hidden;  _overflow:visible;  zoom:1;
+  width: 100%;
+  margin: 10px 0px;
+
+}
+.divider {
+  border-bottom: 1px dashed rgb(220,220,220);
+  box-shadow: none;
+  margin: 20px 0px;
+  height: 1px;
+}
 
 
 
