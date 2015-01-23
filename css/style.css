@@ -449,6 +449,31 @@ button {
   margin: 20px 0px;
   height: 1px;
 }
+.page_section {
+  text-align: center;
+}
+.page_intro {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: top;
+  padding: 10px;
+}
+.page_intro:hover {
+  background: rgb(230,231,226);
+}
+.page_title {
+  width: 100%;
+  text-align: center;
+  color: rgb(53,55,54);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0px;
+}
+.page_img {
+  width: 100%;
+}
 
 
 
